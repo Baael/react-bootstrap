@@ -16,17 +16,25 @@ const Glyphicon = React.createClass({
      * Adds 'form-control-feedback' class
      * @private
      */
-    formControlFeedback: React.PropTypes.bool
+    formControlFeedback: React.PropTypes.bool,
+    /**
+     * You can use a custom element for this component
+     */
+    componentClass: React.PropTypes.element
   },
 
   getDefaultProps() {
     return {
       bsClass: 'glyphicon',
-      formControlFeedback: false
+      formControlFeedback: false,
+      componentClass: 'i'
     };
   },
 
   render() {
+
+    let ComponentClass = this.props.componentClass;
+
     let className = classNames(this.props.className, {
       [this.props.bsClass]: true,
       ['glyphicon-' + this.props.glyph]: true,
@@ -34,9 +42,9 @@ const Glyphicon = React.createClass({
     });
 
     return (
-      <span {...this.props} className={className}>
+      <ComponentClass {...this.props} className={className}>
         {this.props.children}
-      </span>
+      </ComponentClass>
     );
   }
 });
